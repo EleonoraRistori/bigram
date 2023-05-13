@@ -23,7 +23,7 @@ class NGramCounter:
                     else:
                         self.map[ngram] = 1
 
-    def threadCountNgrams(self, words):
+    def partialCountNgrams(self, words):
         map = {}
         for word in words:
             if len(word) > self.nGramLength:
@@ -39,7 +39,7 @@ class NGramCounter:
         slices = [slice(start, start + window_size)
           for start in range(0, len(words) - window_size+1, window_size)]
         slices.append(slice(len(words) - len(words) % window_size, len(words)))
-        result = Parallel(n_jobs=n_jobs)(delayed(self.threadCountNgrams)(words[sl]) for sl in slices)
+        result = Parallel(n_jobs=n_jobs)(delayed(self.partialCountNgrams)(words[sl]) for sl in slices)
         self.map = {}
         for i in range(len(result)):
             for ngram in result[i]:

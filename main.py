@@ -13,7 +13,7 @@ if __name__ == '__main__':
 
     with open('window_size.csv', 'w', newline='') as file:
         writer = csv.writer(file)
-        for i in range(1000, 0, -1000):
+        for i in range(20000, 0, -1000):
             print(i)
             tic = time.time()
             nGramCounter.parallelCountNGrams(words, n_jobs, i)
