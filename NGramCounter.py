@@ -1,5 +1,6 @@
 from joblib import Parallel, delayed
 
+
 class NGramCounter:
     def __init__(self, length):
         self.nGramLength = length
